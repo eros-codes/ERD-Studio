@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Optional: launch4j instead of jpackage.
+  1) mvn clean package           -> target\erd-studio.jar (everything inside, JavaFX included)
+  2) Put a Java 21 runtime next to the exe in a folder named "jre"
+     (see README: "Using launch4j" for the jlink command that creates it)
+  3) launch4jc packaging\launch4j.xml  -> target\ERD Studio.exe
+  Ship "ERD Studio.exe" + the "jre" folder together.
+-->
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>../target/erd-studio.jar</jar>
+  <outfile>../target/ERD Studio.exe</outfile>
+  <errTitle>ERD Studio</errTitle>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <icon>erd-studio.ico</icon>
+  <jre>
+    <path>jre</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>true</requires64Bit>
+    <minVersion>21</minVersion>
+    <maxHeapSize>1024</maxHeapSize>
+    <opt>-Dfile.encoding=UTF-8</opt>
+  </jre>
+  <versionInfo>
+    <fileVersion>2.0.0.0</fileVersion>
+    <txtFileVersion>2.0.0</txtFileVersion>
+    <fileDescription>ERD Studio</fileDescription>
+    <copyright>Arvin Saghafi</copyright>
+    <productVersion>2.0.0.0</productVersion>
+    <txtProductVersion>2.0.0</txtProductVersion>
+    <productName>ERD Studio</productName>
+    <internalName>erd-studio</internalName>
+    <originalFilename>ERD Studio.exe</originalFilename>
+  </versionInfo>
+</launch4jConfig>

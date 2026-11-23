@@ -1,0 +1,713 @@
+/* ==========================================================================
+   ERD Studio — component styles (colours come from theme-light / theme-dark)
+   ========================================================================== */
+
+.root {
+    -fx-font-size: 13px;
+    -fx-background-color: -c-app;
+    -fx-text-fill: -c-text;
+}
+
+.label { -fx-text-fill: -c-text; }
+.label.muted, .muted { -fx-text-fill: -c-muted; }
+.label.small { -fx-font-size: 11.5px; }
+
+/* ---------------------------------------------------------------- icons */
+.icon {
+    -fx-fill: transparent;
+    -fx-stroke: -c-text-2;
+    -fx-stroke-width: 2;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
+}
+.button:hover .icon, .toggle-button:hover .icon, .menu-button:hover .icon { -fx-stroke: -c-text; }
+.toggle-button:selected .icon { -fx-stroke: -c-accent; }
+.button.primary .icon { -fx-stroke: -c-on-accent; }
+.button.danger .icon, .button.danger-ghost .icon { -fx-stroke: -c-danger; }
+.pk-icon .icon { -fx-stroke: -c-pk; -fx-stroke-width: 2.6; }
+.fk-icon .icon { -fx-stroke: -c-accent; -fx-stroke-width: 2.6; }
+.muted-icon .icon { -fx-stroke: -c-muted; }
+.accent-icon .icon { -fx-stroke: -c-accent; }
+
+/* ---------------------------------------------------------------- buttons */
+.button, .toggle-button, .menu-button {
+    -fx-background-color: -c-surface;
+    -fx-background-radius: 8;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 8;
+    -fx-text-fill: -c-text;
+    -fx-padding: 6 12 6 12;
+    -fx-cursor: hand;
+    -fx-graphic-text-gap: 7;
+}
+.button:hover, .toggle-button:hover, .menu-button:hover { -fx-background-color: -c-surface-2; }
+.button:pressed, .toggle-button:pressed { -fx-background-color: -c-surface-3; }
+.button:focused, .toggle-button:focused, .menu-button:focused { -fx-border-color: -c-accent; }
+.button:disabled, .toggle-button:disabled { -fx-opacity: 0.4; }
+
+.button.primary {
+    -fx-background-color: -c-accent;
+    -fx-border-color: transparent;
+    -fx-text-fill: -c-on-accent;
+    -fx-font-weight: bold;
+}
+.button.primary:hover { -fx-background-color: -c-accent-hover; }
+
+.button.flat, .toggle-button.flat, .menu-button.flat {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.button.flat:hover, .toggle-button.flat:hover, .menu-button.flat:hover { -fx-background-color: -c-surface-2; }
+.toggle-button.flat:selected { -fx-background-color: -c-accent-soft; }
+
+.button.icon-button, .toggle-button.icon-button, .menu-button.icon-button {
+    -fx-padding: 6;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 7;
+}
+.button.icon-button:hover, .toggle-button.icon-button:hover, .menu-button.icon-button:hover { -fx-background-color: -c-surface-2; }
+.toggle-button.icon-button:selected { -fx-background-color: -c-accent-soft; }
+.button.small { -fx-padding: 3 8 3 8; -fx-font-size: 12px; }
+.button.icon-button.small { -fx-padding: 4; }
+
+.button.danger { -fx-text-fill: -c-danger; }
+.button.danger:hover { -fx-background-color: -c-danger-soft; -fx-border-color: -c-danger; }
+.button.danger-ghost { -fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 4; }
+.button.danger-ghost:hover { -fx-background-color: -c-danger-soft; }
+
+.menu-button .arrow-button { -fx-padding: 0 0 0 6; }
+.menu-button .arrow { -fx-background-color: -c-muted; }
+.menu-button.no-arrow .arrow-button { -fx-padding: 0; }
+.menu-button.no-arrow .arrow { -fx-padding: 0; -fx-shape: null; }
+
+/* chips: small toggle flags like PK / NN / UQ / AI */
+.toggle-button.chip {
+    -fx-padding: 2 7 2 7;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-text-fill: -c-muted;
+    -fx-background-color: -c-surface;
+}
+.toggle-button.chip:selected {
+    -fx-background-color: -c-accent-soft;
+    -fx-border-color: -c-accent;
+    -fx-text-fill: -c-accent;
+}
+.toggle-button.chip.pk-chip:selected {
+    -fx-background-color: rgba(245, 158, 11, 0.14);
+    -fx-border-color: -c-pk;
+    -fx-text-fill: -c-pk;
+}
+
+/* segmented control */
+.segmented {
+    -fx-background-color: -c-surface-2;
+    -fx-background-radius: 9;
+    -fx-padding: 3;
+    -fx-spacing: 2;
+}
+.segmented .toggle-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 5 10 5 10;
+    -fx-text-fill: -c-muted;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-background-radius: 7;
+}
+.segmented .toggle-button:selected {
+    -fx-background-color: -c-surface;
+    -fx-text-fill: -c-text;
+    -fx-effect: dropshadow(gaussian, -c-shadow, 4, 0, 0, 1);
+}
+
+/* ---------------------------------------------------------------- inputs */
+.text-field, .text-area, .combo-box, .color-picker {
+    -fx-background-color: -c-surface;
+    -fx-background-radius: 8;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 8;
+    -fx-text-fill: -c-text;
+    -fx-highlight-fill: -c-accent-soft;
+    -fx-highlight-text-fill: -c-text;
+    -fx-prompt-text-fill: -c-muted;
+}
+.text-field { -fx-padding: 6 9 6 9; }
+.text-field:focused, .text-area:focused, .combo-box:focused, .combo-box:showing {
+    -fx-border-color: -c-accent;
+    -fx-effect: dropshadow(gaussian, -c-accent-soft, 6, 0.6, 0, 0);
+}
+.text-area .content { -fx-background-color: transparent; -fx-padding: 6 8 6 8; }
+.text-area .scroll-pane { -fx-background-color: transparent; }
+.text-area .viewport { -fx-background-color: transparent; }
+.text-field.compact { -fx-padding: 4 7 4 7; -fx-font-size: 12.5px; }
+.text-field.borderless {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-effect: null;
+}
+.text-field.borderless:hover { -fx-background-color: -c-surface-2; }
+.text-field.borderless:focused { -fx-background-color: -c-surface; -fx-border-color: -c-accent; }
+
+.combo-box { -fx-padding: 0; }
+.combo-box .list-cell { -fx-background-color: transparent; -fx-text-fill: -c-text; -fx-padding: 5 8 5 9; }
+.combo-box .text-field { -fx-background-color: transparent; -fx-border-color: transparent; -fx-effect: null; -fx-padding: 5 8 5 9; }
+.combo-box .arrow-button { -fx-background-color: transparent; -fx-padding: 0 9 0 4; }
+.combo-box .arrow { -fx-background-color: -c-muted; }
+.combo-box.compact .list-cell, .combo-box.compact .text-field { -fx-padding: 3 6 3 7; -fx-font-size: 12.5px; }
+.combo-box-popup .list-view {
+    -fx-background-color: -c-surface;
+    -fx-background-radius: 9;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 9;
+    -fx-effect: dropshadow(gaussian, -c-shadow-strong, 16, 0, 0, 6);
+    -fx-padding: 4;
+}
+.combo-box-popup .list-cell { -fx-background-radius: 6; -fx-padding: 5 9 5 9; -fx-text-fill: -c-text; -fx-background-color: transparent; }
+.combo-box-popup .list-cell:hover { -fx-background-color: -c-surface-2; }
+.combo-box-popup .list-cell:selected { -fx-background-color: -c-accent-soft; -fx-text-fill: -c-accent; }
+
+.check-box { -fx-text-fill: -c-text; -fx-label-padding: 0 0 0 7; }
+.check-box .box {
+    -fx-background-color: -c-surface;
+    -fx-border-color: -c-border-strong;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 3;
+}
+.check-box:selected .box { -fx-background-color: -c-accent; -fx-border-color: -c-accent; }
+.check-box:selected .mark { -fx-background-color: -c-on-accent; }
+.radio-button { -fx-text-fill: -c-text; }
+.radio-button .radio { -fx-background-color: -c-surface; -fx-border-color: -c-border-strong; -fx-border-radius: 1em; -fx-background-radius: 1em; }
+.radio-button:selected .radio { -fx-border-color: -c-accent; }
+.radio-button:selected .dot { -fx-background-color: -c-accent; }
+
+/* ---------------------------------------------------------------- lists & scroll */
+.list-view {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.list-view:focused { -fx-background-color: transparent; }
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -c-text;
+    -fx-padding: 0;
+}
+.scroll-pane, .scroll-pane > .viewport { -fx-background-color: transparent; }
+.scroll-pane { -fx-background-insets: 0; -fx-padding: 0; }
+.scroll-bar {
+    -fx-background-color: transparent;
+    -fx-padding: 2;
+}
+.scroll-bar .thumb { -fx-background-color: -c-scroll; -fx-background-radius: 8; }
+.scroll-bar .track, .scroll-bar .track-background { -fx-background-color: transparent; }
+.scroll-bar .increment-button, .scroll-bar .decrement-button { -fx-padding: 0; -fx-background-color: transparent; }
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow { -fx-padding: 0; -fx-shape: null; }
+.scroll-bar:vertical { -fx-pref-width: 10; }
+.scroll-bar:horizontal { -fx-pref-height: 10; }
+.corner { -fx-background-color: transparent; }
+
+/* ---------------------------------------------------------------- menus, tooltips */
+.menu-bar {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+.menu-bar .menu, .menu-bar .menu-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 7;
+    -fx-padding: 5 9 5 9;
+}
+.menu-bar .menu .label { -fx-text-fill: -c-text-2; }
+.menu-bar .menu:hover, .menu-bar .menu:showing { -fx-background-color: -c-surface-2; }
+.menu-bar .menu:hover .label, .menu-bar .menu:showing .label { -fx-text-fill: -c-text; }
+
+.context-menu {
+    -fx-background-color: -c-surface;
+    -fx-background-radius: 10;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 10;
+    -fx-padding: 5;
+    -fx-effect: dropshadow(gaussian, -c-shadow-strong, 18, 0, 0, 6);
+}
+.menu-item { -fx-background-radius: 6; -fx-padding: 6 12 6 10; }
+.menu-item .label { -fx-text-fill: -c-text; }
+.menu-item:focused, .menu-item:hover { -fx-background-color: -c-accent-soft; }
+.menu-item:focused .label { -fx-text-fill: -c-text; }
+.menu-item .accelerator-text { -fx-text-fill: -c-muted; -fx-padding: 0 0 0 24; }
+.menu-item:disabled .label { -fx-opacity: 0.45; }
+.menu-item.danger-item .label { -fx-text-fill: -c-danger; }
+.menu-item.danger-item:focused { -fx-background-color: -c-danger-soft; }
+.separator-menu-item .line { -fx-border-color: -c-border transparent transparent transparent; -fx-padding: 2 0 2 0; }
+.menu .right-container .arrow, .menu-item .right-container .arrow { -fx-background-color: -c-muted; }
+.radio-menu-item:checked .radio, .check-menu-item:checked .check { -fx-background-color: -c-accent; }
+
+.tooltip {
+    -fx-background-color: #111827;
+    -fx-background-radius: 7;
+    -fx-text-fill: #f9fafb;
+    -fx-font-size: 12px;
+    -fx-padding: 6 9 6 9;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 3);
+}
+
+.separator .line { -fx-border-color: -c-border; -fx-border-width: 1 0 0 0; }
+.separator:vertical .line { -fx-border-width: 0 1 0 0; }
+
+/* ---------------------------------------------------------------- dialogs */
+.dialog-pane {
+    -fx-background-color: -c-surface;
+    -fx-padding: 0;
+}
+.dialog-pane > .header-panel {
+    -fx-background-color: -c-surface;
+    -fx-padding: 18 22 6 22;
+    -fx-border-color: transparent;
+}
+.dialog-pane > .header-panel .label { -fx-font-size: 16px; -fx-font-weight: bold; }
+.dialog-pane > .content { -fx-padding: 12 22 12 22; }
+.dialog-pane > .button-bar > .container { -fx-padding: 12 22 18 22; }
+.dialog-pane .label { -fx-text-fill: -c-text; }
+.dialog-pane .graphic-container { -fx-padding: 0; }
+
+.code-area {
+    -fx-font-size: 12.5px;
+    -fx-background-color: -c-surface-2;
+}
+.code-area .content { -fx-background-color: -c-surface-2; }
+
+/* ---------------------------------------------------------------- app chrome */
+.top-bar {
+    -fx-background-color: -c-surface;
+    -fx-border-color: transparent transparent -c-border transparent;
+    -fx-padding: 6 12 6 12;
+    -fx-spacing: 8;
+    -fx-alignment: center-left;
+}
+.logo {
+    -fx-background-color: linear-gradient(to bottom right, #818cf8, #6366f1 55%, #4f46e5);
+    -fx-background-radius: 8;
+    -fx-min-width: 28; -fx-min-height: 28; -fx-max-width: 28; -fx-max-height: 28;
+}
+.logo .icon { -fx-stroke: white; }
+.app-title { -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -c-text; }
+.diagram-name { -fx-font-size: 13.5px; -fx-font-weight: bold; -fx-alignment: center; -fx-pref-width: 260; }
+.dirty-dot { -fx-fill: -c-accent; }
+
+.sidebar {
+    -fx-background-color: -c-surface;
+    -fx-border-color: transparent -c-border transparent transparent;
+    -fx-padding: 14 10 10 12;
+    -fx-spacing: 10;
+}
+.props {
+    -fx-background-color: -c-surface;
+    -fx-border-color: transparent transparent transparent -c-border;
+}
+.props-content { -fx-padding: 14 14 24 14; -fx-spacing: 16; }
+.panel-title { -fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: -c-muted; }
+.panel-heading { -fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: -c-text; }
+.section { -fx-spacing: 8; }
+.section-title { -fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: -c-muted; }
+.field-label { -fx-font-size: 11.5px; -fx-text-fill: -c-muted; }
+.count-badge {
+    -fx-background-color: -c-surface-2;
+    -fx-background-radius: 20;
+    -fx-padding: 1 7 1 7;
+    -fx-font-size: 11px;
+    -fx-text-fill: -c-muted;
+    -fx-font-weight: bold;
+}
+.hint { -fx-text-fill: -c-muted; -fx-font-size: 12px; -fx-wrap-text: true; }
+.kbd {
+    -fx-background-color: -c-surface-2;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 1 6 1 6;
+    -fx-font-size: 11px;
+    -fx-text-fill: -c-text-2;
+}
+
+/* sidebar list rows */
+.item-row {
+    -fx-padding: 7 8 7 8;
+    -fx-background-radius: 7;
+    -fx-spacing: 9;
+    -fx-alignment: center-left;
+}
+.item-row:hover { -fx-background-color: -c-surface-2; }
+.list-cell:selected .item-row { -fx-background-color: -c-accent-soft; }
+.list-cell:selected .item-row .item-name { -fx-text-fill: -c-accent; -fx-font-weight: bold; }
+.item-name { -fx-text-fill: -c-text; }
+.item-sub { -fx-text-fill: -c-muted; -fx-font-size: 11.5px; }
+
+/* property cards */
+.column-card {
+    -fx-background-color: -c-surface;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 9;
+    -fx-background-radius: 9;
+    -fx-padding: 8;
+    -fx-spacing: 7;
+}
+.column-card:hover { -fx-border-color: -c-border-strong; }
+.column-card.highlight { -fx-border-color: -c-accent; -fx-background-color: -c-accent-softer; }
+.swatch {
+    -fx-cursor: hand;
+    -fx-stroke: transparent;
+    -fx-stroke-width: 2;
+}
+.swatch:hover { -fx-stroke: -c-border-strong; }
+.swatch.selected { -fx-stroke: -c-text; }
+.relation-link {
+    -fx-background-color: -c-surface-2;
+    -fx-background-radius: 7;
+    -fx-padding: 6 8 6 8;
+    -fx-cursor: hand;
+}
+.relation-link:hover { -fx-background-color: -c-accent-soft; }
+
+.status-bar {
+    -fx-background-color: -c-surface;
+    -fx-border-color: -c-border transparent transparent transparent;
+    -fx-padding: 4 12 4 12;
+    -fx-spacing: 14;
+    -fx-alignment: center-left;
+}
+.status-bar .label { -fx-font-size: 11.5px; -fx-text-fill: -c-muted; }
+
+/* ---------------------------------------------------------------- floating canvas controls */
+.floating {
+    -fx-background-color: -c-surface;
+    -fx-background-radius: 12;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, -c-shadow, 14, 0, 0, 4);
+    -fx-padding: 4;
+    -fx-spacing: 2;
+    -fx-alignment: center;
+}
+.floating .separator:vertical { -fx-padding: 4 3 4 3; }
+.zoom-label {
+    -fx-min-width: 54;
+    -fx-alignment: center;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -c-text-2;
+    -fx-padding: 6 4 6 4;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.minimap {
+    -fx-background-color: -c-surface;
+    -fx-background-radius: 12;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, -c-shadow, 14, 0, 0, 4);
+}
+.empty-state { -fx-spacing: 10; -fx-alignment: center; }
+.empty-state .empty-title { -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: -c-text; }
+.empty-state .empty-sub { -fx-font-size: 13px; -fx-text-fill: -c-muted; -fx-text-alignment: center; }
+.empty-icon {
+    -fx-background-color: -c-accent-soft;
+    -fx-background-radius: 18;
+    -fx-min-width: 64; -fx-min-height: 64; -fx-max-width: 64; -fx-max-height: 64;
+}
+.empty-icon .icon { -fx-stroke: -c-accent; }
+.toast {
+    -fx-background-color: #111827;
+    -fx-background-radius: 10;
+    -fx-padding: 9 14 9 14;
+    -fx-spacing: 12;
+    -fx-alignment: center-left;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 18, 0, 0, 6);
+}
+.toast .label { -fx-text-fill: #f9fafb; }
+.toast .button { -fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: #a5b4fc; -fx-padding: 0 4 0 4; -fx-font-weight: bold; }
+
+/* ---------------------------------------------------------------- diagram */
+.diagram-canvas { -fx-background-color: transparent; }
+
+.table-node {
+    -fx-background-color: -c-border, -c-card;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 10, 9;
+    -fx-effect: dropshadow(gaussian, -c-shadow, 14, 0, 0, 4);
+}
+.table-node:hover { -fx-background-color: -c-border-strong, -c-card; }
+.table-node:selected {
+    -fx-background-color: -c-accent, -c-card;
+    -fx-background-insets: -1, 1;
+    -fx-background-radius: 11, 9;
+    -fx-effect: dropshadow(gaussian, -c-accent-soft, 18, 0.35, 0, 3);
+}
+.table-stripe { -fx-background-radius: 10 10 0 0; }
+.table-header {
+    -fx-padding: 0 12 0 14;
+    -fx-spacing: 6;
+    -fx-border-color: transparent transparent -c-border transparent;
+    -fx-border-insets: 0 1 0 1;
+}
+.table-title { -fx-font-size: 13.5px; -fx-font-weight: bold; -fx-text-fill: -c-text; }
+.table-body { -fx-padding: 0; }
+.column-row { -fx-background-insets: 0 1 0 1; }
+.column-row:hover { -fx-background-color: -c-card-hover-row; }
+.column-row:highlight { -fx-background-color: -c-accent-soft; }
+.column-content { -fx-padding: 0 12 0 12; }
+.column-name { -fx-font-size: 12.5px; -fx-text-fill: -c-text; }
+.column-name.pk { -fx-font-weight: bold; }
+.column-type { -fx-font-size: 11.5px; -fx-text-fill: -c-muted; }
+.null-mark { -fx-font-size: 11px; -fx-text-fill: -c-muted; -fx-font-weight: bold; }
+.column-chip {
+    -fx-font-size: 9.5px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -c-muted;
+    -fx-background-color: -c-surface-2;
+    -fx-background-radius: 4;
+    -fx-padding: 0 4 0 4;
+}
+.conn-handle {
+    -fx-background-color: -c-card, -c-accent;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 10, 10;
+    -fx-border-color: -c-accent;
+    -fx-border-radius: 10;
+    -fx-opacity: 0;
+    -fx-cursor: crosshair;
+}
+.column-row:hover .conn-handle { -fx-opacity: 1; }
+.conn-handle:hover { -fx-scale-x: 1.3; -fx-scale-y: 1.3; }
+.inline-edit {
+    -fx-padding: 2 6 2 6;
+    -fx-font-size: 12.5px;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+.relation-edge .edge-hit { -fx-stroke: transparent; -fx-stroke-width: 12; -fx-fill: transparent; }
+.relation-edge .edge-line {
+    -fx-stroke: -c-edge;
+    -fx-stroke-width: 1.6;
+    -fx-fill: transparent;
+    -fx-stroke-line-join: round;
+}
+.relation-edge .edge-marker { -fx-stroke: -c-edge; -fx-stroke-width: 1.6; -fx-fill: transparent; -fx-stroke-line-cap: round; }
+.relation-edge .edge-circle { -fx-stroke: -c-edge; -fx-stroke-width: 1.6; -fx-fill: -c-app; }
+.relation-edge:highlight .edge-line, .relation-edge:highlight .edge-marker, .relation-edge:highlight .edge-circle { -fx-stroke: -c-accent; }
+.relation-edge:highlight .edge-line { -fx-stroke-width: 2; }
+.relation-edge:selected .edge-line, .relation-edge:selected .edge-marker, .relation-edge:selected .edge-circle { -fx-stroke: -c-accent; }
+.relation-edge:selected .edge-line { -fx-stroke-width: 2.6; }
+.relation-edge:dimmed { -fx-opacity: 0.25; }
+
+.connect-line { -fx-stroke: -c-accent; -fx-stroke-width: 2; -fx-fill: transparent; -fx-stroke-dash-array: 6 5; }
+.connect-dot { -fx-fill: -c-accent; }
+.marquee { -fx-fill: -c-accent-softer; -fx-stroke: -c-accent; -fx-stroke-width: 1; -fx-stroke-dash-array: 4 3; }
+
+.note-node {
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, -c-shadow, 12, 0, 0, 4);
+}
+.note-node:selected {
+    -fx-border-color: -c-accent;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+}
+.note-text { -fx-text-fill: -c-note-text; -fx-font-size: 13px; }
+.note-grip {
+    -fx-background-color: rgba(0,0,0,0.18);
+    -fx-shape: "M14 0 L14 14 L0 14 Z";
+    -fx-opacity: 0;
+}
+.note-node:hover .note-grip, .note-node:selected .note-grip { -fx-opacity: 1; }
+.note-editor, .note-editor .content {
+    -fx-background-color: rgba(255,255,255,0.55);
+    -fx-text-fill: #1f1d10;
+    -fx-border-color: transparent;
+    -fx-effect: null;
+}
+
+/* ---------------------------------------------------------------- document tabs */
+.doc-tabs { -fx-background-color: -c-app; }
+.doc-tabs > .tab-header-area {
+    -fx-padding: 4 8 0 8;
+    -fx-background-color: -c-surface;
+    -fx-border-color: transparent transparent -c-border transparent;
+}
+.doc-tabs > .tab-header-area > .tab-header-background { -fx-background-color: transparent; }
+.doc-tabs > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8 8 0 0;
+    -fx-padding: 5 10 6 12;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0 2 0 0;
+}
+.doc-tabs > .tab-header-area > .headers-region > .tab:hover { -fx-background-color: -c-surface-2; }
+.doc-tabs > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: -c-app;
+    -fx-border-color: -c-border -c-border transparent -c-border;
+    -fx-border-radius: 8 8 0 0;
+}
+.doc-tabs .tab .tab-label { -fx-text-fill: -c-muted; -fx-font-size: 12.5px; }
+.doc-tabs .tab:selected .tab-label { -fx-text-fill: -c-text; -fx-font-weight: bold; }
+.doc-tabs .tab:selected .focus-indicator { -fx-border-color: transparent; }
+.doc-tabs .tab .tab-close-button { -fx-background-color: -c-muted; -fx-padding: 4; }
+.doc-tabs .tab .tab-close-button:hover { -fx-background-color: -c-danger; }
+.doc-tabs > .tab-header-area > .control-buttons-tab > .container > .tab-down-button { -fx-background-color: transparent; }
+.doc-tabs > .tab-header-area > .control-buttons-tab > .container > .tab-down-button > .arrow { -fx-background-color: -c-muted; }
+.doc-tabs > .tab-content-area { -fx-padding: 0; -fx-background-color: -c-app; }
+
+/* ---------------------------------------------------------------- command palette */
+.palette-backdrop { -fx-background-color: rgba(15, 17, 21, 0.28); }
+.palette {
+    -fx-background-color: -c-surface;
+    -fx-background-radius: 14;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 14;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 40, 0, 0, 14);
+}
+.palette-search-row {
+    -fx-padding: 12 14 12 16;
+    -fx-border-color: transparent transparent -c-border transparent;
+}
+.palette-search, .palette-search:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-effect: null;
+    -fx-font-size: 15px;
+    -fx-padding: 2 0 2 0;
+}
+.palette-list { -fx-padding: 6; }
+.palette-list .list-cell { -fx-background-radius: 8; -fx-padding: 0; }
+.palette-row { -fx-padding: 7 10 7 10; -fx-background-radius: 8; }
+.palette-list .list-cell:selected .palette-row { -fx-background-color: -c-accent-soft; }
+.palette-list .list-cell:hover .palette-row { -fx-background-color: -c-surface-2; }
+.palette-label { -fx-text-fill: -c-text; -fx-font-size: 13px; }
+.palette-list .list-cell:selected .palette-label { -fx-text-fill: -c-accent; -fx-font-weight: bold; }
+.palette-cat { -fx-text-fill: -c-muted; -fx-font-size: 11.5px; }
+
+/* ---------------------------------------------------------------- areas */
+.area-body {
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-border-width: 1.5;
+}
+.area-node:selected .area-body {
+    -fx-border-width: 2.5;
+    -fx-border-style: segments(8, 5);
+}
+.area-title {
+    -fx-font-size: 12.5px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 10 4 10;
+    -fx-background-radius: 7;
+}
+.area-grip {
+    -fx-shape: "M14 0 L14 14 L0 14 Z";
+    -fx-opacity: 0;
+}
+.area-node:hover .area-grip, .area-node:selected .area-grip { -fx-opacity: 1; }
+
+/* ---------------------------------------------------------------- screenshot & tidy */
+.shot-preview {
+    -fx-background-color: -c-surface-2;
+    -fx-background-radius: 12;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 12;
+    -fx-padding: 12;
+}
+.tidy-button { -fx-font-weight: bold; -fx-text-fill: -c-accent; -fx-padding: 6 10 6 8; }
+.tidy-button:hover { -fx-background-color: -c-accent-soft; }
+
+/* ---------- collapsible / resizable side panels ---------- */
+.props-wrap { -fx-background-color: -c-surface; -fx-border-color: transparent transparent transparent -c-border; }
+.props-wrap > .props { -fx-border-width: 0; }
+.panel-header { -fx-padding: 10 8 8 16; -fx-min-height: 40; }
+.panel-close { -fx-padding: 4; -fx-background-radius: 6; -fx-opacity: 0.75; }
+.panel-close:hover { -fx-opacity: 1; -fx-background-color: -c-surface-3; }
+.panel-divider { -fx-background-color: transparent; }
+.panel-divider:hover, .panel-divider:pressed { -fx-background-color: -c-accent-soft; }
+.panel-rail { -fx-background-color: -c-surface; -fx-padding: 12 0 12 0; }
+.panel-rail.rail-left { -fx-border-color: transparent -c-border transparent transparent; }
+.panel-rail.rail-right { -fx-border-color: transparent transparent transparent -c-border; }
+.panel-rail:hover { -fx-background-color: -c-surface-2; }
+.panel-rail .icon { -fx-stroke: -c-text-2; }
+.rail-label { -fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: -c-muted; }
+.panel-rail:hover .rail-label { -fx-text-fill: -c-accent; }
+
+/* tidy-up split button */
+.tidy-button { -fx-background-radius: 8 0 0 8; }
+.tidy-style { -fx-padding: 6 4 6 2; -fx-background-radius: 0 8 8 0; -fx-background-color: transparent; }
+.tidy-style:hover { -fx-background-color: -c-accent-soft; }
+.tidy-style > .arrow-button > .arrow { -fx-background-color: -c-accent; }
+.overflow-button > .arrow-button { -fx-padding: 0; }
+.overflow-button > .arrow-button > .arrow { -fx-padding: 0; -fx-background-color: transparent; }
+.dialog-scroll, .dialog-scroll > .viewport { -fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0; }
+.tidy-style > .label { -fx-padding: 0; -fx-min-width: 0; -fx-pref-width: 0; }
+.tidy-style > .arrow-button { -fx-padding: 0 4 0 2; }
+.tidy-style { -fx-padding: 6 2 6 0; }
+
+/* ---------- home screen / project library ---------- */
+.home { -fx-background-color: -c-app; }
+.home-page { -fx-padding: 0; }
+.home-header { -fx-padding: 26 36 10 36; }
+.home-logo { -fx-min-width: 38; -fx-min-height: 38; -fx-max-width: 38; -fx-max-height: 38; -fx-background-radius: 11; }
+.home-title { -fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: -c-text; }
+.home-count { -fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: -c-accent; -fx-background-color: -c-accent-soft; -fx-background-radius: 10; -fx-padding: 2 9 2 9; }
+.home-toolbar { -fx-padding: 6 36 10 36; }
+.home-search { -fx-padding: 7 10 7 32; -fx-background-radius: 9; -fx-border-radius: 9; }
+.home-scroll, .home-scroll > .viewport { -fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0; }
+.home-body { -fx-padding: 8 36 36 36; }
+.home-section { -fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: -c-muted; -fx-padding: 6 0 0 2; }
+.home-none { -fx-text-fill: -c-muted; -fx-font-size: 13px; -fx-padding: 40 0 0 0; }
+.home-empty { -fx-padding: 90 20 40 20; -fx-spacing: 12; }
+.home-empty-title { -fx-font-size: 19px; -fx-font-weight: bold; -fx-text-fill: -c-text; }
+.home-footer {
+    -fx-padding: 9 36 9 36;
+    -fx-background-color: -c-surface;
+    -fx-border-color: -c-border transparent transparent transparent;
+}
+.home-footer .label { -fx-font-size: 12px; }
+.button.link-button {
+    -fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 2 4 2 4;
+    -fx-text-fill: -c-accent; -fx-font-size: 12px; -fx-cursor: hand;
+}
+.button.link-button:hover { -fx-underline: true; -fx-background-color: transparent; }
+
+.project-card {
+    -fx-background-color: -c-surface;
+    -fx-background-radius: 12;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 12;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, -c-shadow, 10, 0, 0, 2);
+}
+.project-card:hover {
+    -fx-border-color: -c-accent;
+    -fx-effect: dropshadow(gaussian, -c-shadow-strong, 18, 0, 0, 5);
+}
+.trash-card, .trash-card:hover { -fx-cursor: default; -fx-border-color: -c-border; }
+.card-thumb { -fx-background-color: -c-surface-2; -fx-background-radius: 11 11 0 0; }
+.card-info { -fx-padding: 10 12 12 14; }
+.card-name { -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -c-text; }
+.card-meta { -fx-font-size: 12px; -fx-text-fill: -c-text-2; }
+.card-time { -fx-font-size: 11.5px; -fx-text-fill: -c-muted; }
+.card-error { -fx-font-size: 12px; -fx-text-fill: -c-danger; }
+.card-empty { -fx-text-fill: -c-muted; -fx-font-size: 12px; }
+.card-badge {
+    -fx-background-color: -c-accent; -fx-text-fill: -c-on-accent; -fx-font-size: 10.5px; -fx-font-weight: bold;
+    -fx-background-radius: 6; -fx-padding: 2 7 2 7;
+}
+.toggle-button.card-pin {
+    -fx-background-color: -c-surface; -fx-background-radius: 8; -fx-border-color: -c-border; -fx-border-radius: 8;
+    -fx-padding: 5; -fx-opacity: 0;
+}
+.project-card:hover .toggle-button.card-pin, .toggle-button.card-pin:selected { -fx-opacity: 1; }
+.toggle-button.card-pin:selected .icon { -fx-stroke: #f59e0b; -fx-fill: #f59e0b; }
+.card-more { -fx-padding: 2; }
+.home-tab .icon { -fx-stroke: -c-text-2; }
+.home-tab:selected .icon { -fx-stroke: -c-accent; }

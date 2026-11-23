@@ -1,0 +1,42 @@
+/* ERD Studio — dark palette. */
+.root {
+    -c-app: #0f1115;
+    -c-surface: #16181e;
+    -c-surface-2: #1d2027;
+    -c-surface-3: #252932;
+    -c-border: #2a2e37;
+    -c-border-strong: #3a3f4b;
+    -c-text: #e6e8ee;
+    -c-text-2: #b4bac7;
+    -c-muted: #7d8597;
+    -c-accent: #818cf8;
+    -c-accent-hover: #a5b4fc;
+    -c-accent-soft: rgba(129, 140, 248, 0.18);
+    -c-accent-softer: rgba(129, 140, 248, 0.09);
+    -c-on-accent: #0f1115;
+    -c-danger: #f87171;
+    -c-danger-soft: rgba(248, 113, 113, 0.14);
+    -c-success: #4ade80;
+    -c-pk: #fbbf24;
+    -c-edge: #5b6476;
+    -c-card: #1a1d24;
+    -c-card-hover-row: #21252d;
+    -c-row-line: #22262e;
+    -c-shadow: rgba(0, 0, 0, 0.35);
+    -c-shadow-strong: rgba(0, 0, 0, 0.55);
+    -c-scroll: rgba(255, 255, 255, 0.16);
+    -c-note-text: #2c2815;
+
+    -fx-base: #1d2027;
+    -fx-background: #16181e;
+    -fx-control-inner-background: #16181e;
+    -fx-accent: #818cf8;
+    -fx-focus-color: #818cf8;
+    -fx-faint-focus-color: rgba(129, 140, 248, 0.2);
+    -fx-selection-bar: #818cf8;
+    -fx-selection-bar-non-focused: #30344a;
+    -fx-text-base-color: #e6e8ee;
+    -fx-text-background-color: #e6e8ee;
+    -fx-mark-color: #e6e8ee;
+    -fx-prompt-text-fill: #6b7280;
+}
