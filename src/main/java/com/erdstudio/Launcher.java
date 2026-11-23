@@ -8,6 +8,16 @@ import javafx.application.Application;
  */
 public final class Launcher {
     public static void main(String[] args) {
+        for (String a : args) {
+            if ("--mcp".equals(a)) { // MCP server for AI assistants (stdio); no window
+                try {
+                    com.erdstudio.mcp.McpServer.run();
+                } catch (Exception e) {
+                    System.err.println("ERD Studio MCP server stopped: " + e);
+                }
+                return;
+            }
+        }
         System.setProperty("prism.lcdtext", "false");
         // respect the system proxy / VPN settings for the update check
         System.setProperty("java.net.useSystemProxies", "true");

@@ -27,6 +27,7 @@ public final class SingleInstance {
 
     private static ServerSocket server;
     private static volatile Consumer<List<String>> handler;
+    private static volatile java.util.function.Function<String, String> mcpHandler;
     private static final List<List<String>> pending = new ArrayList<>();
 
     static Path portFile() {
@@ -86,7 +87,15 @@ public final class SingleInstance {
                 BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream(), StandardCharsets.UTF_8));
                 PrintWriter out = new PrintWriter(s.getOutputStream(), true, StandardCharsets.UTF_8);
                 if (!token.equals(in.readLine())) continue;
+                String first = in.readLine();
+                if ("::mcp".equals(first)) {
+                    String req = in.readLine();
+                    java.util.function.Function<String, String> h = mcpHandler;
+                    out.println(h == null || req == null ? "{\"error\":\"ERD Studio is still starting, try again.\"}" : h.apply(req));
+                    continue;
+                }
                 List<String> files = new ArrayList<>();
+                if (first != null && !first.equals("::end")) files.add(first);
                 for (String line; (line = in.readLine()) != null && !line.equals("::end"); ) {
                     if (files.size() < 64) files.add(line);
                 }
@@ -101,6 +110,46 @@ public final class SingleInstance {
     private static synchronized void deliver(List<String> files) {
         if (handler == null) pending.add(files);
         else handler.accept(files);
+    }
+
+    /** Handles one MCP tool call (JSON in, JSON out); runs on the listener thread. */
+    public static void onMcp(java.util.function.Function<String, String> h) {
+        mcpHandler = h;
+    }
+
+    /**
+     * Sends one MCP request to the running window. Returns its JSON answer, or null when no
+     * ERD Studio window is running (the caller then works on the files directly).
+     */
+    public static String request(String json) {
+        Path f = portFile();
+        try {
+            if (!Files.exists(f)) return null;
+            String[] parts = Files.readString(f).trim().split("\\s+");
+            if (parts.length < 2) return null;
+            int port = Integer.parseInt(parts[0]);
+            try (Socket s = new Socket()) {
+                try {
+                    s.connect(new InetSocketAddress(InetAddress.getLoopbackAddress(), port), 700);
+                } catch (IOException notRunning) {
+                    return null;
+                }
+                s.setSoTimeout(120_000);
+                PrintWriter out = new PrintWriter(s.getOutputStream(), true, StandardCharsets.UTF_8);
+                BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream(), StandardCharsets.UTF_8));
+                out.println(parts[1]);
+                out.println("::mcp");
+                out.println(json.replace("\n", " ").replace("\r", " "));
+                String answer = in.readLine();
+                if (answer == null) return null; // another program on that port: not ERD Studio
+                return answer;
+            } catch (java.net.SocketTimeoutException e) {
+                // the window is open but busy: never fall back to the files, the app would overwrite them
+                return "{\"error\":\"ERD Studio is open but did not answer in time (is a dialog open?). Try again.\"}";
+            }
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /** The handler runs on the listener thread; it should hop to the FX thread itself. */

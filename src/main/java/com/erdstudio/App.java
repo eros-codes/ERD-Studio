@@ -14,6 +14,7 @@ public final class App extends Application {
         }
         MainWindow w = new MainWindow(stage);
         w.show(getParameters().getRaw());
+        SingleInstance.onMcp(w.mcpHandler());
         SingleInstance.onFiles(files -> javafx.application.Platform.runLater(() -> w.openFromOutside(files)));
     }
 

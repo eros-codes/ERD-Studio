@@ -64,6 +64,16 @@ launch4jc packaging\launch4j.xml
 
 Ship `ERD Studio.exe` together with the `jre` folder.
 
+## AI assistants (MCP)
+
+`ERD Studio --mcp` (installed as `erd-studio-mcp.exe`, a console launcher next to the app) is a stdio MCP server with
+18 tools: list/read/export projects (SQL, Prisma, DBML, Mermaid, Markdown), versions and migrations, and edits
+(create project, import schema, add/update/delete tables, columns, foreign keys, indexes, tidy, save version).
+When the window is open, calls are forwarded over the loopback single-instance socket and run on the tab's editor
+(live, one undo step each, autosaved); otherwise the .erd files are edited directly. Help → Connect an AI assistant
+adds it to Claude Desktop and shows the Claude Code / generic commands; a read-only switch hides all write tools.
+Projects can't be deleted through MCP.
+
 ## Keyboard
 
 | Action | Keys |

@@ -10,7 +10,7 @@ public final class AppInfo {
     public static final String NAME = "ERD Studio";
     /** GitHub repository that publishes releases (owner/name). */
     public static final String REPO = "eros-codes/ERD-Studio";
-    private static final String FALLBACK_VERSION = "2.3.0";
+    private static final String FALLBACK_VERSION = "2.4.0";
 
     /** Version from the Maven build (pom.xml), so there is a single place to change it. */
     public static final String VERSION = readVersion();

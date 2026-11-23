@@ -90,6 +90,11 @@ public final class Settings {
 
     public static void setCheckUpdates(boolean v) { P.putBoolean("checkUpdates", v); }
 
+    /** AI assistants connected over MCP may only read diagrams, not change them. */
+    public static boolean mcpReadOnly() { return P.getBoolean("mcpReadOnly", false); }
+
+    public static void setMcpReadOnly(boolean v) { P.putBoolean("mcpReadOnly", v); }
+
     public static String get(String key, String def) { return P.get(key, def); }
 
     public static void put(String key, String value) {

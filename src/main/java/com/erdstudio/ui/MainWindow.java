@@ -71,8 +71,8 @@ public final class MainWindow implements Workspace.Host, HomeView.Actions {
     private static final int MAX_RECENT = 10;
 
     private final Stage stage;
-    private final TabPane tabs = new TabPane();
-    private final Map<Tab, Workspace> workspaces = new LinkedHashMap<>();
+    final TabPane tabs = new TabPane();
+    final Map<Tab, Workspace> workspaces = new LinkedHashMap<>();
     private final BooleanProperty minimap = new SimpleBooleanProperty(Boolean.parseBoolean(Settings.get("minimap", "true")));
     private final PanelState panels = new PanelState();
 
@@ -161,7 +161,7 @@ public final class MainWindow implements Workspace.Host, HomeView.Actions {
 
     // ================================================================== tabs
 
-    private Workspace cur() {
+    Workspace cur() {
         Tab t = tabs.getSelectionModel().getSelectedItem();
         return t == null ? null : workspaces.get(t);
     }
@@ -235,12 +235,12 @@ public final class MainWindow implements Workspace.Host, HomeView.Actions {
         home.refresh();
     }
 
-    private Tab tabOf(Workspace w) {
+    Tab tabOf(Workspace w) {
         for (Map.Entry<Tab, Workspace> e : workspaces.entrySet()) if (e.getValue() == w) return e.getKey();
         return null;
     }
 
-    private Workspace workspaceFor(Path p) {
+    Workspace workspaceFor(Path p) {
         if (p == null) return null;
         Path abs = p.toAbsolutePath().normalize();
         for (Workspace w : workspaces.values()) {
@@ -635,6 +635,7 @@ public final class MainWindow implements Workspace.Host, HomeView.Actions {
         Menu m = new Menu("Help");
         m.getItems().addAll(
                 item("Help", "Keyboard shortcuts", "F1", Icons.KEYBOARD, this::showShortcuts),
+                item("Help", "Connect an AI assistant (MCP)…", null, Icons.ZAP, () -> new McpDialog(stage).showAndWait()),
                 item("Help", "Check for updates…", null, Icons.DOWNLOAD, updater::checkNow),
                 item("Help", "Release notes on GitHub", null, Icons.EXTERNAL, () -> Desktops.browse(com.erdstudio.update.UpdateService.releasesPage())),
                 item("Help", "About ERD Studio", null, null, () -> Dialogs.info(stage, "ERD Studio " + com.erdstudio.AppInfo.VERSION,
@@ -775,7 +776,7 @@ public final class MainWindow implements Workspace.Host, HomeView.Actions {
         if (files != null) for (File f : files) openPath(f.toPath());
     }
 
-    private void openPath(Path p) {
+    void openPath(Path p) {
         Workspace existing = workspaceFor(p);
         if (existing != null) {
             tabs.getSelectionModel().select(tabOf(existing));
@@ -901,7 +902,7 @@ public final class MainWindow implements Workspace.Host, HomeView.Actions {
         });
     }
 
-    private Workspace createAndOpen(Diagram d) {
+    Workspace createAndOpen(Diagram d) {
         try {
             Path p = ProjectLibrary.get().create(d);
             openPath(p);
@@ -1257,6 +1258,12 @@ public final class MainWindow implements Workspace.Host, HomeView.Actions {
     }
 
     /** Files handed over by a second launch (double-clicked .erd while the app is open). */
+    /** Handles MCP tool calls forwarded by "ERD Studio --mcp" (runs them on the FX thread). */
+    public java.util.function.Function<String, String> mcpHandler() {
+        McpBridge bridge = new McpBridge(this);
+        return bridge::handle;
+    }
+
     public void openFromOutside(List<String> files) {
         for (String f : files) {
             Path p = Path.of(f);

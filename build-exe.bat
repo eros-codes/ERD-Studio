@@ -40,6 +40,7 @@ set MODULES=java.base,java.desktop,java.logging,java.prefs,java.sql,java.xml,jav
 set COMMON=--name "ERD Studio" --app-version %APP_VERSION% --vendor "Arvin Saghafi" --description "Database diagram designer" ^
   --copyright "Arvin Saghafi" --input target\dist --main-jar erd-studio.jar --main-class com.erdstudio.Launcher ^
   --icon packaging\erd-studio.ico --add-modules %MODULES% ^
+  --add-launcher erd-studio-mcp=packaging\mcp-launcher.properties ^
   --java-options "-Xmx1024m" --java-options "-Dfile.encoding=UTF-8"
 
 echo === 3/3  jpackage (%TYPE%) ===
